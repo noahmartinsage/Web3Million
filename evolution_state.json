@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-02-06T15:09:00.433932",
+  "capital": 95.09354110440668,
+  "integration_active": true,
+  "feedback_count": 860,
+  "agent_status": {
+    "status": "initializing"
+  }
+}

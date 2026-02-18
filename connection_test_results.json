@@ -1,0 +1,12 @@
+{
+  "timestamp": 1770382181.2387164,
+  "results": {
+    "public_endpoint": true,
+    "market_data": true,
+    "private_endpoint": false,
+    "sandbox_features": true
+  },
+  "successful_tests": 3,
+  "total_tests": 4,
+  "overall_success": true
+}

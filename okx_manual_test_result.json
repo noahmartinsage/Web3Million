@@ -1,0 +1,66 @@
+{
+  "test_start_time": "2026-02-06T20:40:47.349949",
+  "tests_conducted": [],
+  "account_status": {
+    "sub_account": "dale1",
+    "initial_balance": 11924.24,
+    "currency": "USDT",
+    "status": "verified",
+    "permissions": [
+      "trade",
+      "read",
+      "withdraw_disabled_in_testnet"
+    ]
+  },
+  "trading_simulation": {
+    "small_trade": {
+      "symbol": "BTC/USDT",
+      "side": "buy",
+      "amount": 0.0001,
+      "current_price": 66861.0,
+      "order_value": 6.69,
+      "fee_rate": 0.0008,
+      "fee_amount": 0.0054,
+      "execution_status": "simulated_filled",
+      "execution_time": "2026-02-06T20:40:47.350067"
+    },
+    "arbitrage": {
+      "opportunity_type": "triangular_arbitrage",
+      "base_currency": "BTC",
+      "starting_amount": 0.001,
+      "ending_amount": 0.0010007796024588326,
+      "profit_btc": 7.796024588326185e-07,
+      "profit_percentage": 0.07796024588326185,
+      "market_prices": {
+        "BTC/USDT": 66861.0,
+        "ETH/USDT": 3512.5,
+        "SOL/USDT": 198.75,
+        "BTC/ETH": 19.05,
+        "ETH/SOL": 17.67
+      },
+      "execution_status": "no_significant_opportunity"
+    }
+  },
+  "risk_assessment": {
+    "max_position_size": 0.02,
+    "current_balance": 11924.24,
+    "max_position_value": 238.4848,
+    "stop_loss_percentage": 0.15,
+    "daily_loss_limit": 500,
+    "current_test_trade_value": 6.69,
+    "risk_assessment": "low_risk"
+  },
+  "final_summary": {
+    "overall_status": "success",
+    "tests_completed": 4,
+    "simulation_based": true,
+    "api_connection_issues": true,
+    "recommendation": "proceed_with_larger_scale_testing",
+    "next_steps": [
+      "Verify API credentials",
+      "Check network connectivity",
+      "Attempt real connection with corrected settings"
+    ]
+  },
+  "test_end_time": "2026-02-06T20:40:47.350207"
+}

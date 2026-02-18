@@ -1,0 +1,18 @@
+{
+  "exchange": "okx",
+  "api_key": "8fb83dcd-dc09-4b1f-b39a-85185475cbe1",
+  "secret_key": "***HIDDEN***",
+  "passphrase": "***HIDDEN***",
+  "sub_account": "dale1",
+  "sandbox": true,
+  "default_pairs": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT"
+  ],
+  "risk_management": {
+    "max_position_size": 0.05,
+    "max_daily_loss": 1000,
+    "leverage": 1.0
+  }
+}
