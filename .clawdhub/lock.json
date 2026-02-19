@@ -20,6 +20,14 @@
     "base-wallet": {
       "version": "1.5.0",
       "installedAt": 1771258865560
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1771495165640
+    },
+    "opencode-controller": {
+      "version": "1.0.0",
+      "installedAt": 1771495181155
     }
   }
 }
