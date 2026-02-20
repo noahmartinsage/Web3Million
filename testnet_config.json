@@ -4,41 +4,30 @@
       "rpc_url": "https://ethereum-sepolia-rpc.publicnode.com",
       "chain_id": 11155111,
       "currency": "ETH",
-      "explorer_url": "https://sepolia.etherscan.io",
-      "faucets": [
-        "https://sepoliafaucet.com",
-        "https://faucet.sepolia.dev"
-      ]
+      "explorer_url": "https://sepolia.etherscan.io"
     },
     "bsc_testnet": {
       "rpc_url": "https://data-seed-prebsc-1-s1.binance.org:8545",
       "chain_id": 97,
-      "currency": "BNB",
-      "explorer_url": "https://testnet.bscscan.com",
-      "faucets": [
-        "https://testnet.binance.org/faucet-smart"
-      ]
-    },
-    "polygon_mumbai": {
-      "rpc_url": "https://rpc-mumbai.maticvigil.com",
-      "chain_id": 80001,
-      "currency": "MATIC",
-      "explorer_url": "https://mumbai.polygonscan.com",
-      "faucets": [
-        "https://faucet.polygon.technology/"
-      ]
+      "currency": "BNB"
     }
   },
   "risk_management": {
-    "max_position_size": 0.05,
-    "max_daily_loss": 100,
-    "max_drawdown": 0.1,
-    "test_mode": true
+    "max_position_size": 1.0,
+    "max_daily_loss": 10000,
+    "max_drawdown": 0.5,
+    "test_mode": false
   },
   "trading_settings": {
-    "leverage": 1.0,
-    "slippage_tolerance": 0.5,
-    "min_trade_size": 0.01,
-    "simulation_mode": true
+    "leverage": 100.0,
+    "slippage_tolerance": 1.0,
+    "min_trade_size": 0.001,
+    "simulation_mode": false,
+    "live_trading": true
+  },
+  "okx_account": {
+    "api_key": "b71ee824-5524-4cde-b818-b8e294c27d56",
+    "testnet": true,
+    "connected": true
   }
 }

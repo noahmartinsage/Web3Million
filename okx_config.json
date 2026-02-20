@@ -1,9 +1,9 @@
 {
   "exchange": "okx",
-  "api_key": "8fb83dcd-dc09-4b1f-b39a-85185475cbe1",
-  "secret_key": "***HIDDEN***",
-  "passphrase": "***HIDDEN***",
-  "sub_account": "dale1",
+  "api_key": "b71ee824-5524-4cde-b818-b8e294c27d56",
+  "secret_key": "76122A8879980469F474F042135584DB",
+  "passphrase": "Qian159.",
+  "sub_account": "",
   "sandbox": true,
   "default_pairs": [
     "BTC/USDT",
