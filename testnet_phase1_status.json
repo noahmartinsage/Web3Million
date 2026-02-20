@@ -1,0 +1,42 @@
+{
+  "phase": "1 - 测试网运行",
+  "status": "RUNNING",
+  "start_time": "2026-02-21T02:04:35+08:00",
+  "last_update": "2026-02-21T02:05:12+08:00",
+  "system_version": "v4.5",
+  "initial_capital": 6846.73,
+  "current_data": {
+    "timestamp": "2026-02-21T02:05:12+08:00",
+    "eth_price_usdt": 1969.41,
+    "total_value_usdt": 6863.67,
+    "pnl_usdt": 16.94,
+    "pnl_percent": 0.25,
+    "holdings": {
+      "usdt": 1289.03,
+      "eth": 2.8306
+    },
+    "position": "HOLD",
+    "signal_score": 0,
+    "drawdown_percent": 0.00
+  },
+  "risk_parameters": {
+    "max_position_pct": 15,
+    "stop_loss_pct": 1.0,
+    "take_profit_pct": 2.0,
+    "max_drawdown_pct": 10.0
+  },
+  "trading_settings": {
+    "symbol": "ETH/USDT",
+    "exchange": "OKX Testnet",
+    "refresh_interval_sec": 30
+  },
+  "features_active": [
+    "市场状态检测 (VIX + 动量)",
+    "多因子评分 (动量/质量/波动性)",
+    "动态参数调整",
+    "TWAP 订单算法",
+    "VaR 风控估算"
+  ],
+  "session_id": "gentle-canyon",
+  "pid": 29484
+}
