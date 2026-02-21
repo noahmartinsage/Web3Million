@@ -1,41 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Web3Million Perpetual Futures Trading System v5.0
-High Leverage, Small Stop Loss, Large Take Profit Strategy
+Web3Million Perpetual v5 - Robust 24/7 Trading System
 """
 import ccxt
 import pandas as pd
-import numpy as np
 import time
+import sys
 from datetime import datetime
+
+# Force unbuffered output
+sys.stdout = sys.__stdout__
+sys.stderr = sys.__stderr__
 
 class PerpetualTraderV5:
     def __init__(self):
-        # OKX testnet perpetual
         self.exchange = ccxt.okx({
             'apiKey': 'b71ee824-5524-4cde-b818-b8e294c27d56',
             'secret': '76122A8879980469F474F042135584DB',
             'password': 'Qian159.',
             'testnet': True,
-            'options': {'defaultType': 'swap'}
+            'options': {'defaultType': 'swap'},
+            'enableRateLimit': True
         })
         
-        # Trading pairs (perpetual)
-        self.symbols = [
-            'BTC/USDT:USDT',
-            'ETH/USDT:USDT',
-            'SOL/USDT:USDT',
-            'XRP/USDT:USDT',
-            'DOGE/USDT:USDT'
-        ]
+        self.symbols = ['BTC/USDT:USDT', 'ETH/USDT:USDT', 'SOL/USDT:USDT']
         
-        # Core params (adjusted for OKX testnet limits)
-        self.max_position_usdt = 20  # Max 20U per trade
-        self.min_position_eth = 0.01  # Min 0.01 ETH = ~$20
-        self.leverage = 50  # Max 75x, use 50x for safety
-        self.stop_loss_pct = 0.015  # 1.5% stop loss
-        self.take_profit_pct = 0.10  # 10% take profit (10%*50x=500%!)
+        # Params
+        self.max_position_usdt = 20
+        self.min_position_eth = 0.01
+        self.leverage = 50
+        self.stop_loss_pct = 0.015
+        self.take_profit_pct = 0.10
         
         # State
         self.position = None
@@ -43,21 +39,14 @@ class PerpetualTraderV5:
         self.entry_price = 0
         self.trades = []
         self.total_pnl = 0
-        self.daily_trades = 0
         
-        print("="*60, flush=True)
-        print("Web3Million Perpetual v5.0", flush=True)
-        print("Min Position: 0.01 ETH (~20U) | Leverage: 50x", flush=True)
-        print("Stop Loss: 1.5% | Take Profit: 10% (500% real!)", flush=True)
-        print("="*60, flush=True)
+        print("="*60)
+        print("Web3Million Perpetual v5 - 24/7 Mode")
+        print("="*60)
         
-        # Load markets with timeout
-        print("Loading markets...", flush=True)
-        try:
-            self.exchange.load_markets()
-            print("Markets loaded!")
-        except Exception as e:
-            print(f"Market load warning: {e}")
+        print("Loading markets...")
+        self.exchange.load_markets()
+        print("Markets loaded!")
     
     def get_balance(self):
         try:
@@ -83,8 +72,7 @@ class PerpetualTraderV5:
         if df.empty or len(df) < 30:
             return df
         
-        # Use 'c' for close (ccxt format)
-        closes = df['c'] if 'c' in df.columns else df['close']
+        closes = df['c']
         
         # RSI
         delta = closes.diff()
@@ -119,37 +107,22 @@ class PerpetualTraderV5:
             macd_hist_prev = prev['macd_hist']
             ma_trend = 1 if latest['ma5'] > latest['ma20'] else -1
             
-            # Long: RSI oversold + MACD golden cross + MA bullish
             if rsi <= 35 and macd_hist > macd_hist_prev and ma_trend > 0:
                 return 'LONG', latest['c'], rsi
-            # Short: RSI overbought + MACD death cross + MA bearish
             elif rsi >= 65 and macd_hist < macd_hist_prev and ma_trend < 0:
                 return 'SHORT', latest['c'], rsi
             
             return 'NEUTRAL', latest['c'], rsi
         except Exception as e:
+            print(f"Signal error {symbol}: {e}")
             return 'NEUTRAL', 0, 50
     
     def scan_opportunities(self):
-        opportunities = []
         for symbol in self.symbols:
             signal, price, rsi = self.get_signal(symbol)
             if signal != 'NEUTRAL':
-                opportunities.append({
-                    'symbol': symbol,
-                    'signal': signal,
-                    'price': price,
-                    'rsi': rsi
-                })
-        
-        if not opportunities:
-            return None
-        
-        # Prioritize extreme RSI
-        if opportunities[0]['signal'] == 'LONG':
-            return min(opportunities, key=lambda x: x['rsi'])
-        else:
-            return max(opportunities, key=lambda x: x['rsi'])
+                return {'symbol': symbol, 'signal': signal, 'price': price, 'rsi': rsi}
+        return None
     
     def open_position(self, symbol, side, amount):
         try:
@@ -163,12 +136,11 @@ class PerpetualTraderV5:
             self.symbol = symbol
             self.position = side
             self.entry_price = self.get_ticker(symbol)['last']
-            self.entry_amount = amount
             
-            print(f"[OPEN] {side} {symbol} {amount} @ ${self.entry_price}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [OPEN] {side} {symbol} {amount} @ ${self.entry_price}")
             return True
         except Exception as e:
-            print(f"Open error: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] Open error: {e}")
             return False
     
     def close_position(self, reason):
@@ -197,7 +169,7 @@ class PerpetualTraderV5:
                     pnl = (self.entry_price - current) * pos_size
                 
                 self.total_pnl += pnl
-                print(f"[CLOSE] {self.position} {reason} @ ${current}, PnL: ${pnl:.2}")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [CLOSE] {self.position} {reason} @ ${current}, PnL: ${pnl:.2}")
                 
                 self.trades.append({
                     'symbol': self.symbol,
@@ -211,9 +183,8 @@ class PerpetualTraderV5:
             self.position = None
             self.symbol = None
             self.entry_price = 0
-            self.daily_trades += 1
         except Exception as e:
-            print(f"Close error: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] Close error: {e}")
     
     def check_exit(self):
         if not self.position or not self.symbol:
@@ -226,21 +197,22 @@ class PerpetualTraderV5:
         else:
             pnl_pct = (self.entry_price - current) / self.entry_price
         
-        # Stop loss
         if pnl_pct <= -self.stop_loss_pct:
             return True, f"SL {pnl_pct*100:.1f}%"
         
-        # Take profit (large!)
         if pnl_pct >= self.take_profit_pct:
             return True, f"TP {pnl_pct*100:.1f}%"
         
         return False, None
     
-    def run(self, iterations=100, interval=30):
-        print(f"\nStarting trading... (interval: {interval}s)")
+    def run_forever(self, interval=30):
+        print(f"\nStarting 24/7 trading... (interval: {interval}s)")
+        print("Press Ctrl+C to stop\n")
         
-        for i in range(iterations):
+        i = 0
+        while True:
             try:
+                i += 1
                 usdt = self.get_balance()
                 
                 # Check exit
@@ -253,14 +225,12 @@ class PerpetualTraderV5:
                 if not self.position:
                     opp = self.scan_opportunities()
                     if opp:
-                        print(f"\n[Signal] {opp['signal']} {opp['symbol']} @ ${opp['price']} RSI:{opp['rsi']:.1f}")
-                        
-                        # amount = max_position_usdt / opp['price']
+                        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] [Signal] {opp['signal']} {opp['symbol']} @ ${opp['price']} RSI:{opp['rsi']:.1f}")
                         amount = self.min_position_eth
                         self.open_position(opp['symbol'], opp['signal'], amount)
                 
                 # Status
-                status = f"[{i+1}] "
+                status = f"[{i}] "
                 if self.position:
                     current = self.get_ticker(self.symbol)['last']
                     if self.position == 'LONG':
@@ -274,8 +244,11 @@ class PerpetualTraderV5:
                 print(status)
                 time.sleep(interval)
                 
+            except KeyboardInterrupt:
+                print("\n\nStopping...")
+                break
             except Exception as e:
-                print(f"Error: {e}")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] Error: {e}")
                 time.sleep(10)
         
         self.print_report()
@@ -286,14 +259,9 @@ class PerpetualTraderV5:
         print("="*60)
         print(f"Total PnL: ${self.total_pnl:.2}")
         print(f"Total Trades: {len(self.trades)}")
-        
-        if self.trades:
-            wins = [t for t in self.trades if t['pnl'] > 0]
-            win_rate = len(wins) / len(self.trades) * 100 if self.trades else 0
-            print(f"Win Rate: {win_rate:.1f}%")
         print("="*60)
 
 
 if __name__ == "__main__":
     trader = PerpetualTraderV5()
-    trader.run(iterations=50, interval=30)
+    trader.run_forever(interval=30)
