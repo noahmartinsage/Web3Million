@@ -1,0 +1,23 @@
+{
+  "evolver_id": "node_55e1685cfd23f94e",
+  "platform": "win11",
+  "workspace": "C:\\Users\\noah\\.openclaw\\workspace",
+  "evomapsync": {
+    "enabled": true,
+    "auto_download_capsules": true,
+    "auto_publish_capsules": true,
+    "sync_interval_minutes": 30
+  },
+  "evolution": {
+    "strategy": "balanced",
+    "allow_self_modify": false,
+    "review_mode": false,
+    "max_load": 2.0
+  },
+  "web3million": {
+    "enabled": true,
+    "trading_system": "v6",
+    "exchange": "okx_testnet",
+    "auto_optimize": true
+  }
+}

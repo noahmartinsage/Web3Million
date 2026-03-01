@@ -1,0 +1,1 @@
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/openclaw/openclaw/archive/refs/tags/v2026.2.22.tar.gz' -OutFile 'D:\AI\openclaw\openclaw-2026.2.22.tar.gz'"
