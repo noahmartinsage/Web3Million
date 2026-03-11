@@ -4,6 +4,11 @@
 Web3Million SimTrader v1.0 - 模拟交易模式
 本地生成价格数据，测试 v7.2 策略逻辑
 """
+import sys
+import io
+# 强制 UTF-8 输出编码 (修复 Windows 中文乱码问题)
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
 import random
 import math
 import time

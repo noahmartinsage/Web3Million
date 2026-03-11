@@ -37,11 +37,15 @@ class PerpetualTraderV7_2:
         self.highest_price = 0
         self.lowest_price = float('inf')
         
+        # 加载 OKX 配置
+        with open('okx_config.json', 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
         # 初始化 OKX 测试网 - 使用 IP 直连绕过代理
         self.okx = ccxt.okx({
-            'apiKey': '',
-            'secret': '',
-            'password': '',
+            'apiKey': config.get('api_key', ''),
+            'secret': config.get('secret_key', ''),
+            'password': config.get('passphrase', ''),
             'enableRateLimit': True,
             'options': {'defaultType': 'swap'},
         })

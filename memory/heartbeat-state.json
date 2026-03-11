@@ -3,10 +3,19 @@
     "email": null,
     "calendar": null,
     "weather": null,
-    "market": 1740067860,
+    "market": 1741624191,
     "github": null,
-    "system": 1740067860
+    "system": 1741624191
   },
-  "lastHeartbeat": "2026-02-21T00:11:00+08:00",
-  "sessionCount": 1
+  "lastHeartbeat": "2026-03-11T00:39:51+08:00",
+  "sessionCount": 9,
+  "consecutiveDormantChecks": 9,
+  "dormantSince": "2026-02-24",
+  "lastReport": {
+    "capital": 95.09,
+    "growth": "850.9%",
+    "trades": 0,
+    "openPositions": 0,
+    "status": "dormant"
+  }
 }

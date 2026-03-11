@@ -1,0 +1,21 @@
+{
+  "total_trades": 0,
+  "winning_trades": 0,
+  "losing_trades": 0,
+  "total_pnl": 0.0,
+  "max_drawdown": 0.0,
+  "win_rate": 0.0,
+  "avg_win": 0.0,
+  "avg_loss": 0.0,
+  "profit_factor": 0.0,
+  "trades": [],
+  "config": {
+    "initial_balance": 670.0,
+    "leverage": 20,
+    "rsi_long": 32,
+    "rsi_short": 68,
+    "stop_loss_pct": 5.0,
+    "take_profit_pct": 15.0
+  },
+  "timestamp": "2026-03-03T02:10:22.351611"
+}
