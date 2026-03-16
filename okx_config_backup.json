@@ -1,0 +1,18 @@
+{
+  "exchange": "okx",
+  "api_key": "b71ee824-5524-4cde-b818-b8e294c27d56",
+  "secret_key": "76122A8879980469F474F042135584DB",
+  "passphrase": "Qian159.",
+  "sub_account": "",
+  "sandbox": true,
+  "default_pairs": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT"
+  ],
+  "risk_management": {
+    "max_position_size": 0.05,
+    "max_daily_loss": 1000,
+    "leverage": 1.0
+  }
+}

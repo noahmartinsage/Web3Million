@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-03-16T16:17:08.290740",
+  "total_trades": 5023,
+  "wins": 1892,
+  "losses": 3131,
+  "win_rate": 37.66673302807087,
+  "by_agent": [
+    {
+      "agent": "A1",
+      "win_rate": 38.57566765578635,
+      "total": 1011,
+      "wins": 390
+    },
+    {
+      "agent": "A2",
+      "win_rate": 37.05179282868526,
+      "total": 1004,
+      "wins": 372
+    },
+    {
+      "agent": "A3",
+      "win_rate": 36.163836163836166,
+      "total": 1001,
+      "wins": 362
+    },
+    {
+      "agent": "A4",
+      "win_rate": 37.28981206726014,
+      "total": 1011,
+      "wins": 377
+    },
+    {
+      "agent": "A5",
+      "win_rate": 39.2570281124498,
+      "total": 996,
+      "wins": 391
+    }
+  ],
+  "by_symbol": [
+    {
+      "symbol": "BTC",
+      "win_rate": 37.932739861523245,
+      "total": 2022,
+      "wins": 767
+    },
+    {
+      "symbol": "ETH",
+      "win_rate": 38.15,
+      "total": 2000,
+      "wins": 763
+    },
+    {
+      "symbol": "SOL",
+      "win_rate": 36.163836163836166,
+      "total": 1001,
+      "wins": 362
+    }
+  ]
+}
