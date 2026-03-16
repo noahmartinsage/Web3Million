@@ -1,0 +1,24 @@
+{
+  "v9_mega": {
+    "rsi_long": 30,
+    "rsi_short": 70,
+    "leverage": 50,
+    "stop_loss": 0.15,
+    "take_profit": 0.5
+  },
+  "quantum_frenzy": {
+    "leverage": 40,
+    "scan_interval": 1,
+    "stop_loss": 0.03,
+    "take_profit": 0.1,
+    "consensus_threshold": 0.7
+  },
+  "deep_crazy": {
+    "ma_period": 20,
+    "momentum_period": 5,
+    "leverage": 50,
+    "position_size": 0.95,
+    "stop_loss": 0.05,
+    "take_profit": 0.2
+  }
+}
