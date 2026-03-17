@@ -333,8 +333,9 @@ class QuantumHive:
         print(f"触发阈值：0.05%-0.1%")
         print("="*70 + "\n")
         
-        # 创建初始智能体群
-        self.spawn_swarm(5)
+        # 创建初始智能体群 (如果还没有的话)
+        if len(self.agents) == 0:
+            self.spawn_swarm(5)
         
         # 启动智能体线程
         threads = []
